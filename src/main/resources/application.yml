@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: docker-compose-test
+
+logging:
+  file: ${spring.application.name}.log
+  level:
+    root: INFO
+
+server:
+  port: 8081
+
+---
+spring:
+  profiles: dev
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: "SELECT 'x'"
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 50
